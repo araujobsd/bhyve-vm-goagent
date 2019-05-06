@@ -32,7 +32,7 @@ import (
 	"github.com/shirou/gopsutil/net"
 )
 
-// Returns information about IFACE settings.
+// NetInfo - returns information about IFACE settings.
 func NetInfo() []net.InterfaceStat {
 	vnet, err := net.Interfaces()
 	CheckErr(err)

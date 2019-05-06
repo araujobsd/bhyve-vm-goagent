@@ -92,6 +92,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	defer c.Close()
 }
 
+// RunServer - runs the websocket server itself
 func RunServer(ipaddr *string, port *int) {
 	var bindto string
 	http.HandleFunc("/", home)

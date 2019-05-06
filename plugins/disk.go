@@ -34,6 +34,7 @@ import (
 	"github.com/shirou/gopsutil/disk"
 )
 
+// FSTYPE - map what kind of FS we support
 var FSTYPE = map[string]bool{
 	"ext3": true,
 	"ext4": true,
@@ -41,6 +42,7 @@ var FSTYPE = map[string]bool{
 	"ufs":  true,
 }
 
+// DiskUsage - define the disk structure
 type DiskUsage struct {
 	Mountpoint string `json:"mountpoint"`
 	Fstype     string `json:"fstype"`
@@ -49,6 +51,7 @@ type DiskUsage struct {
 	Used       uint64 `json:"used"`
 }
 
+// DiskInformation - just set an exported variable
 var DiskInformation []DiskUsage
 
 func UsageInfo(path string) DiskUsage {
@@ -65,7 +68,7 @@ func UsageInfo(path string) DiskUsage {
 	return diskusage
 }
 
-// Returns information about root slice.
+// DiskInfo - returns information about root slice.
 func DiskInfo() []byte {
 	vdisk, err := disk.Partitions(true)
 	DiskInformation := []DiskUsage{}

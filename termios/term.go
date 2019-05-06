@@ -35,8 +35,10 @@ import (
 	"syscall"
 )
 
+// DEBUG - set 1 for debug information or 0 for silence
 const DEBUG int = 1
 
+// NewConnection - open the console for new connections
 func NewConnection(vconsole string) int {
 	fd, err := syscall.Open(vconsole, syscall.O_RDWR, 0666)
 	if err != nil {
@@ -47,10 +49,12 @@ func NewConnection(vconsole string) int {
 	return fd
 }
 
+// CloseConnection - use a syscall to close the fd
 func CloseConnection(fd int) {
 	syscall.Close(fd)
 }
 
+// Read - read N bytes from fd
 func Read(fd int) []byte {
 	var MaxRead int = 1024
 	var numread int
@@ -75,6 +79,7 @@ func Read(fd int) []byte {
 	return guestInfo
 }
 
+// Write - write N bytes on fd
 func Write(fd int, guestInfo []byte) {
 	_, err := syscall.Write(fd, guestInfo)
 	if err != nil {

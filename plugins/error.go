@@ -28,6 +28,7 @@
 
 package plugins
 
+// CheckErr - I don't want repeat myself
 func CheckErr(err error) {
 	if err != nil {
 		panic(err)

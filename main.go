@@ -40,8 +40,8 @@ import (
 )
 
 const (
-    DEBUG int = 0
-    VERSION string = "1.0-RELEASE"
+	DEBUG   int    = 0
+	VERSION string = "1.0-RELEASE"
 )
 
 var (
@@ -68,6 +68,7 @@ func checkConsole() string {
 	return ""
 }
 
+// Run - Runs the call
 func Run(fd int) {
 	var dump []byte
 	callback := termios.Read(fd)
@@ -144,10 +145,10 @@ func main() {
 		vconsole := checkConsole()
 		if len(vconsole) > 0 {
 			fd := termios.NewConnection(vconsole)
+			defer termios.CloseConnection(fd)
 			for {
 				Run(fd)
 			}
-			defer termios.CloseConnection(fd)
 		} else {
 			fmt.Println("Error: Guest without support of virtio-console.")
 			os.Exit(2)

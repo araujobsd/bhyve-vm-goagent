@@ -34,6 +34,7 @@ import (
 	"github.com/shirou/gopsutil/host"
 )
 
+// HostInfo - data structure for the uptime
 type HostInfo struct {
 	Seconds uint64 `json:"seconds"`
 	Days    uint64 `json:"days"`
@@ -41,6 +42,7 @@ type HostInfo struct {
 	Minutes uint64 `json:"minutes"`
 }
 
+// Uptime - get the guest uptime
 func Uptime() []byte {
 	hostinfo := HostInfo{}
 	for i := 0; i < 3; i++ {
@@ -57,7 +59,7 @@ func Uptime() []byte {
 	return convjson
 }
 
-// Return pong.
+// Ping - return pong.
 func Ping() string {
 	return "pong"
 }

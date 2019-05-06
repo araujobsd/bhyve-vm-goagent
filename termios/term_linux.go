@@ -36,6 +36,7 @@ import (
 	"unsafe"
 )
 
+// SetTerm - set speciall options for the terminal
 func SetTerm(fd *int) {
 	termios := syscall.Termios{}
 	termios.Cflag |= syscall.CS8 | syscall.CREAD | syscall.CLOCAL | syscall.B115200
